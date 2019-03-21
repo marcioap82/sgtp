@@ -1,0 +1,474 @@
+<!--[main]-->
+<style>
+        
+.container-fluid geral{
+  border: 0px;
+  margin: 1em auto;   
+  width: 1000px;   
+}
+
+#divTitulo{
+    
+    border: 1px solid #ccc;
+    border-bottom: none;
+}
+div{
+   
+    border: 1px solid #ccc;
+    min-height: 25px;    
+    border-bottom: none;
+
+    
+    
+}
+
+#textoLado{
+    border: 0px;
+    text-align: center;
+}
+
+#textoLadoCondutor{
+    border: 0px;
+    text-align: center;
+    margin: none;
+}
+#condutorBorda{
+    border: 0px;    
+}
+#acidente{
+    border: 0px; 
+
+}
+
+.titulo{
+    text-align: center;
+    font-family: verdana;
+    font-size: 15px;
+    font-weight: bold;
+}
+#rowConteudo{
+    min-height: 8px;
+    font-family: verdana;
+    font-size: 8px;
+    font-weight: bold;
+    color: #8B8989;
+}
+#rowConteudoPericia{    
+    font-family: verdana;
+    font-size: 8px;
+    font-weight: bold;
+    color: #8B8989;
+}
+#rowConteudoCondutor{
+    min-height: 320px;
+    font-family: verdana;
+    font-size: 8px;
+    font-weight: bold;
+    color: #8B8989;
+}
+#rowConteudoVitima{
+    min-height: 40px;
+    font-family: verdana;
+    font-size: 8px;
+    font-weight: bold;
+    color: #8B8989;
+}
+#rowConteudoObservacoes{
+    min-height: 200px;
+    font-family: verdana;
+    font-size: 8px;
+    font-weight: bold;
+    color: #8B8989;
+}
+#observacoes{
+    text-align: center;
+    font-family: verdana;
+    font-size: 14px;
+    font-weight: bold;
+    border: 0px; 
+    border-bottom: 1px solid #ccc;
+    color: #8B8989;
+}
+#identidicacao{
+    border: 0px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    color: #8B8989;
+}
+#id1{
+    font-weight: bold;
+    border: 1px solid #ccc;
+    border-top-width:3px;
+    border-left-style:none;
+}
+#id2{
+    font-weight: bold;
+    border: 1px solid #ccc;
+    border-top-width:3px;
+}
+#id3{
+    font-weight: bold;
+    border: 1px solid #ccc;
+    border-top-width:3px;
+    border-right-style: none;
+}
+.resposta{
+  font-family: Arial;
+  font-size: 12px; 
+  text-align: center;  
+  color: #000000; 
+  
+}
+.textoVerticalAcidente {
+writing-mode:tb-rl;
+-webkit-transform:rotate(180deg); 
+-moz-transform:rotate(180deg);
+-o-transform: rotate(180deg);
+white-space:nowrap;
+display:block;
+bottom:0;
+width:20px;
+height:20px;
+font-family: Arial, Helvetica, sans-serif;
+font-size:12px;
+font-weight: bold;
+margin-top:150px;
+}
+.textoVerticalCondutor {
+writing-mode:tb-rl;
+-webkit-transform:rotate(180deg); 
+-moz-transform:rotate(180deg);
+-o-transform: rotate(180deg);
+white-space:nowrap;
+display:block;
+bottom:0;
+width:20px;
+height:20px;
+font-family: Arial, Helvetica, sans-serif;
+font-size:12px;
+font-weight: bold;
+margin-top:320px;
+}
+.textoVerticalVitima {
+writing-mode:tb-rl;
+-webkit-transform:rotate(180deg); 
+-moz-transform:rotate(180deg);
+-o-transform: rotate(180deg);
+white-space:nowrap;
+display:block;
+bottom:0;
+width:20px;
+height:20px;
+font-family: Arial, Helvetica, sans-serif;
+font-size:12px;
+font-weight: bold;
+margin-top:40px;
+}
+
+@media (max-width: 540px) {
+
+  .container-fluid geral{
+  border: 0px;
+  margin: 1em auto;   
+  width: 100%;   
+}
+
+  .textoVerticalAcidente {
+  writing-mode:tb-rl;
+  -webkit-transform:rotate(270deg); 
+  -moz-transform:rotate(270deg);
+  -o-transform: rotate(270deg);
+  white-space:nowrap;
+  display:block;
+  bottom:0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size:20px;
+  font-weight: bold;
+  margin-top:0px;
+  }
+
+  .textoVerticalCondutor {
+  writing-mode:tb-rl;
+  -webkit-transform:rotate(270deg); 
+  -moz-transform:rotate(270deg);
+  -o-transform: rotate(270deg);
+  white-space:nowrap;
+  display:block;
+  bottom:0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size:15px;
+  font-weight: bold;
+  margin-top:0px;
+  }
+
+  .textoVerticalVitima {
+  writing-mode:tb-rl;
+  -webkit-transform:rotate(270deg); 
+  -moz-transform:rotate(270deg);
+  -o-transform: rotate(270deg);
+  white-space:nowrap;
+  display:block;
+  bottom:0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size:20px;
+  font-weight: bold;
+  margin-top:0px;
+  }
+
+  #identidicacao{
+    font-size: 8px;
+    }
+  #textoLado{
+    background-color: #EEEEE0;
+  }
+  #acidente{
+    border: 0px;
+    margin: 0px;
+  }  
+  #condutorBorda{
+    background-color: #EEEEE0;
+  }
+  #vitimaBorda{
+    background-color: #EEEEE0;
+  }
+  #observacoes{
+    background-color: #EEEEE0;
+  }
+
+}
+</style>
+<div class="container-fluid">
+    <div class="row" id="divTitulo">
+      <div class="col-sm-3">
+        <table class="titulo">
+          <tr>
+            <td>ESTADO DO AMAPÁ</td>            
+          </tr>
+          <tr>
+            <td><b>POLÍCIA MILITAR</td>           
+          </tr>
+          <tr>
+            <td>BPTRAN</td>           
+          </tr>
+        </table>
+      </div>
+      <div class="col-sm-6">
+        <table class="titulo">
+          <tr>
+            <td><br>BOLETIM DE OCORRÊNCIA DE ACIDENTE DE TRÂNSITO - BOAT<br><br></td>            
+          </tr>
+        </table>
+      </div>
+      <div class="col-sm-3">
+        <table class="titulo">
+          <tr>
+            <td><br>Nº BOAT:<br><br>{$numeroboat}<br></td>            
+          </tr>
+        </table>
+      </div>
+    </div>
+ 
+    <div class="row" id="rowConteudo">
+      <div class="col-sm-1  d-flex" id="textoLado">
+        <div class="d-flex align-items-center" id="acidente">
+          <table class="textoVerticalAcidente d-none .d-sm-block">
+            <tr>
+              <td>DADOS DO ACIDENTE</td>            
+            </tr>
+          </table>  
+        </div>
+      </div>
+      <div class="col-sm-11 col-xs-12">
+        <div class="row">
+          <div class="col-sm-8">
+            <p>ENDEREÇO DA OCORRÊNCIA</p><br><p class="resposta">{$endereco}</p>
+                        
+          </div>
+          
+          <div class="col-sm-2">
+            <p>MUNICÍPIO</p><br><p class="resposta">{$municipio}</p>
+          </div>
+          <div class="col-sm-2">
+            <p>UF</p></p><br><p class="resposta">{$estado}</p>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+            <p>BAIRRO</p><br><p class="resposta">{$bairro}</p>
+          </div>
+          <div class="col-sm-6">
+            <p> COMPLEMENTO</p><br><p class="resposta">{$complemento}</p>
+          </div>
+          <div class="col-sm-2">
+            <p>HORA DA CHEGADA</p><p class="resposta">{$horaChegada}</p>
+          </div>
+        </div>
+        <div class="row">            
+            <div class="col-sm-3">
+                <p>DATA</p><p class="resposta">{$dataBoat}</p>  
+            </div>
+            <div class="col-sm-3">
+                <p>CLASSIFICAÇÃO</p><br><p class="resposta">{$classificacao}</p>
+            </div>
+            <div class="col-sm-3">
+                <p>ENVOLVIDOS</p><br><p class="resposta">{$envolvidos}</p>
+            </div>
+            <div class="col-sm-3">
+                <p>TIPO DE ACIDENTE</p><br><p class="resposta">{$tipoAcidente}</p>
+            </div>
+        </div>
+        <div class="row">                        
+            <div class="col-sm-3"><p>TIPO DE PAVIMENTO</p><br><p class="resposta">{$tipoPavimento}</p></div>
+            <div class="col-sm-3"><p>CONDIÇÕES DA VIA</p><br><p class="resposta">{$condicaoVia}</p></div>
+            <div class="col-sm-3"><p>COND. DO TEMPO</p><br><p class="resposta">{$condicaotempo}</p></div>
+            <div class="col-sm-3"><p>CONTROLE DO TRÁFEGO</p><br><p class="resposta">{$controle}</p></div>
+        </div>
+      </div>
+    </div>
+  <!--Inicia Pericia -->
+    <div class="row" id="rowConteudoPericia">
+        <div class="col-sm-3"><p>PERÍCIA COMPARECEU AO LOCAL </p><br><p class="resposta">{$compareceu}</p></div>   
+        <div class="col-sm-3"><p>DATA</p><br><p class="resposta">{$dataPericia}</p></div> 
+        <div class="col-sm-3"><p>HORÁRIO</p><br><p class="resposta">{$horarioPericia}</p></div> 
+        <div class="col-sm-3"><p>NOME</p><br><p class="resposta">{$nomePericia}</p></div> 
+    </div>
+ <!--[condutor]-->
+    <div class="row" id="rowConteudoCondutor">
+      <div class="col-sm-1 d-flex" id="condutorBorda">
+        <div class="d-flex align-items-center" id="textoLadoCondutor">
+          <table class="textoVerticalCondutor">
+            <tr>
+              <td>DADOS DO CONDUTOR E DO VEÍCULO </td>            
+            </tr>
+          </table>  
+        </div>
+      </div>
+      <div class="col-sm-11">
+        <div class="row">
+          <div class="col-sm-9">
+            <p>NOME COMPLETO</p><br><p class="resposta">{$nomecondutor}</p>
+          </div>
+          <div class="col-sm-3">
+            <p>SITUAÇÃO DO CONDUTOR</p><br><p class="resposta">{$situacaocondutor}</p>
+          </div>          
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+            <p>IDADE</p><br><p class="resposta">{$idade}</p>
+          </div>
+          <div class="col-sm-3">
+            <p>GÊNERO</p><br><p class="resposta">{$genero}</p>
+          </div>
+          <div class="col-sm-6">
+            <p> CPF</p><br><p class="resposta">{$cpf}</p>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+              <p>ENDEREÇO</p><br><p class="resposta">{$endereco}</p>
+            </div>
+            <div class="col-sm-4">
+             <p>BAIRRO</p><br><p class="resposta">{$bairro}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2"><p>CONDUTOR HABILITADO? </p><br><p class="resposta">{$situacaohabilitado}</p></div>
+            <div class="col-sm-4"><p>Nº REGISTRO (CNH/PPD/PID/LADV/ACC)</p><br><p class="resposta">{$numerohabilitacao}</p></div>
+            <div class="col-sm-2"><p>CATEGORIA</p><br><p class="resposta">{$categoria}</p></div>
+            <div class="col-sm-2"><p>VENCIMENTO</p><br><p class="resposta">{$vencimento}</p></div>
+            <div class="col-sm-2"><p>U.F.</p><br><p class="resposta">{$uf}</p></div>             
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><p>PLACA</p><br><p class="resposta">{$placa}</p></div>
+          <div class="col-sm-3"><p>CHASSI</p><br><p class="resposta">{$chassi}</p></div>
+          <div class="col-sm-3"><p>ESPÉCIE/TIPO</p><br><p class="resposta">{$especie}</p></div>
+          <div class="col-sm-3"><p>CATEGORIA DO VEÍCULO</p><br><p class="resposta">{$categoriaveiculo}</p></div>
+        </div>
+       <div class="row">
+            <div class="col-sm-3"><p>APRESENTA SINAIS DE EMBRIAGUEZ? </p><p class="resposta">{$embriaguez}</p></div>
+          <div class="col-sm-3"><p>REALIZOU TESTE DO ETILÔMETRO?</p><p class="resposta">{$etilometro}</p></div>
+          <div class="col-sm-3"><p>APARELHO ETILÔMETRO?</p><p class="resposta">{$aparelhoetilometro}</p></div>
+          <div class="col-sm-3"><p>ESTADO DO CONDUTOR</p><p class="resposta">{$estado_condutor}</p></div>
+          
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><p>REMOVIDO PARA</p><p class="resposta">{$removido_para}</p></div>
+            <div class="col-sm-3"><p>REMOVIDO POR</p><p class="resposta">{$removido_por}</p></div>
+            <div class="col-sm-6"><p>CONDUTOR DECLARA QUE TRAFEGAVA NA VIA:</p><p class="resposta">{$declaracao_condutor}</p></div>
+                    
+        </div>
+         <div class="row">
+            <div class="col-sm-3"><p>TRAFEGAVA NO SENTIDO:</p><p class="resposta">{$sentido}</p></div>
+            <div class="col-sm-3"><p>REALIZAVA MANOBRAS: </p><p class="resposta">{$manobras}</p></div>
+            <div class="col-sm-6"><p>ALGUM OBJETO ATRAPALHOU SUA TRAFEGABILIDADE NA VIA?</p><p class="resposta">{$objeto}</p></div>         
+        </div>
+         <div class="row">          
+            <div class="col-sm-6"><p>ARTIGO(S) DO CTB:</p><p class="resposta">{$artigo}</p></div>
+            <div class="col-sm-6"><p>NÚMERO DO(S) AUTO(S):</p><p class="resposta">{$autos}</p></div>
+        </div>
+         <div class="row">          
+            <div class="col-sm-6"><p>VEÍCULO REMOVIDO PARA:</p><p class="resposta">{$veiculo_removido}</p></div>
+            <div class="col-sm-6"><p>VEÍCULO APRESENTADO A(O):</p><p class="resposta">{$veiculo_apresentado}</p></div>
+        </div>
+         <div class="row">          
+            <div class="col-sm-6"><p>VEÍCULO ENTREGUE AO RESPONSÁVEL DE NOME:</p><p class="resposta">{$veiculo_entregue}</p></div>
+            <div class="col-sm-2"><p>TIPO DE DOCUMENTO:</p><p class="resposta">{$tipo_documeto_responsavel}</p></div>
+            <div class="col-sm-2"><p>NÚMERO DO DOCUMENTO:</p><p class="resposta">{$documento_responsavel}</p></div>
+            <div class="col-sm-2"><p>TELEFONE:</p><p class="resposta">{$telefone_responsavel}</p></div>
+        </div>
+        
+        
+      </div>
+    </div>
+    <!--[/condutor]-->
+  <!--[vitima]-->
+    <div class="row" id="rowConteudoVitima">
+      <div class="col-sm-1 d-flex" id="vitimaBorda">
+        <div class="d-flex align-items-center" id="textoLado">
+          <table class="textoVerticalVitima">
+            <tr>
+              <td>VÍTIMA</td>            
+            </tr>
+          </table>  
+        </div>
+      </div>
+      <div class="col-sm-11">
+        <div class="row">
+            <div class="col-sm-6"><p>NOME COMPLETO</p><p class="resposta">{$nomeVitima}</p></div>
+          <div class="col-sm-2"><p>IDADE</p><p class="resposta">{$idade_vitima}</p></div>
+          <div class="col-sm-2"><p>GÊNERO</p><p class="resposta">{$genero_vitima}</p></div>
+          <div class="col-sm-2"><p>ESTADO DA VÍTIMA</p><p class="resposta">{$estado_vitima}</p></div>          
+        </div>
+        <div class="row">
+            <div class="col-sm-4"><p>CONDIÇÃO DA VÍTIMA</p><p class="resposta">{$condicao_vitima}</p></div>
+          <div class="col-sm-4"><p>REMOVIDO PARA</p><p class="resposta">{$vitima_removido_para}</p></div>
+          <div class="col-sm-4"><p>REMOVIDO POR</p><p class="resposta">{$vitima_removido_por}</p></div>         
+        </div>
+      </div>
+    </div>
+    <!--[/vitima]-->
+  <!--Inicia Observações -->
+  <div class="row" id="rowObservacao">
+    <div class="col-sm-12" id="observacoes"><p>OBSERVAÇÕES</p></div> 
+    <div class="col-sm-12" id="rowConteudoObservacoes"><p><p class="resposta">{$observacao}</p></p></div>  
+    <div class="row" id="identidicacao">
+        <div class="col-sm-6" id="id1"><p>ENCARREGADO(POSTO/GRADUAÇÃO):</p><p class="resposta">{$encarregado}</p></div>
+        <div class="col-sm-3" id="id2"><p>HORA FINAL:</p><p class="resposta">{$hora_final}</p></div>
+        <div class="col-sm-3" id="id3"><p>PREFIXO DA VIATURA:</p><p class="resposta">{$numero_viatura}</p></div>         
+    </div>
+  </div>
+  {$botao}    {$botao2}   
+</div>
+
+      
+<!--[/main]-->
+
+
+
+
+
+
+
+
+
+

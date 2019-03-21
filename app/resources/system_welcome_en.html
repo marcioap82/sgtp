@@ -1,0 +1,65 @@
+<!--[main]-->
+  <style>
+.topo{
+        background: #ccc;
+         color:black;
+         font-weight: bold;        
+        -moz-box-shadow: 3px 3px 3px #ececec;
+         box-shadow: 3px 3px 3px #ececec;
+        
+     }
+h3{
+    color: #363636;
+	font-family: Arial;
+	font-size: 16;
+	text-align: center;
+	
+
+}
+h4{
+    color: #363636;
+	font-family: Arial;
+	font-size: 14;
+	text-align: center;
+
+}
+.table-responsive-md{
+text-align: left;
+}
+
+</style>
+<ol>
+     
+      <h3>BEM VINDO AO SISTEMA DE GESTÃO DE TRÂNSITO E PESSOAS</h3>
+      <h4>Aniversariante do Mês</h4>
+     <div class="table-responsive-md"> 
+          <table class="table">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Nome de Guerra</th>
+                  <th scope="col">Posto / Graduação</th>
+                  <th scope="col">Data De Nascimento</th>              
+                </tr>
+              </thead>
+               <!--[aniversariante]-->
+              <tbody>         
+                <tr class="bg-primary">
+                  <th scope="row">
+                  {$nome}
+                  </th>
+                  <td>
+                  {$postograduacao}
+                  </td>
+                  <td>
+                  {$datanascimento}
+                  </td>              
+                </tr>
+             
+              </tbody>
+              <!--[/aniversariante]-->   
+        </table>
+    </div>
+      
+      
+      
+<!--[/main]-->

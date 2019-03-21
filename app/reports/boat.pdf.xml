@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<design>
+    <page>
+        <format>a4</format>
+        <orientation>P</orientation>
+    </page>
+    <image id="1">
+        <class>Image</class>
+        <x>10</x>
+        <y>18</y>
+        <width>570</width>
+        <height>184</height>
+        <file>app/images/boat/Dados do acidente.jpg</file>
+    </image>
+    <image id="2">
+        <class>Image</class>
+        <x>10</x>
+        <y>204</y>
+        <width>571</width>
+        <height>370</height>
+        <file>app/images/boat/Dados condutor.jpg</file>
+    </image>
+    <image id="3">
+        <class>Image</class>
+        <x>6</x>
+        <y>576</y>
+        <width>575</width>
+        <height>64</height>
+        <file>app/images/boat/vitima.jpg</file>
+    </image>
+    <image id="4">
+        <class>Image</class>
+        <x>5</x>
+        <y>641</y>
+        <width>576</width>
+        <height>188</height>
+        <file>app/images/boat/observacao.jpg</file>
+    </image>
+</design>

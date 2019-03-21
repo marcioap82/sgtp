@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu>
+  <menuitem label="_t{Administration}">
+    <icon>fa:university fa-fw</icon>
+    <menu>
+      <menuitem label="_t{Programs}">
+        <icon>fa:file-code-o fa-fw</icon>
+        <action>SystemProgramList</action>
+      </menuitem>
+      <menuitem label="_t{Groups}">
+        <icon>fa:users fa-fw</icon>
+        <action>SystemGroupList</action>
+      </menuitem>
+      <menuitem label="_t{Units}">
+        <icon>fa:university fa-fw</icon>
+        <action>SystemUnitList</action>
+      </menuitem>
+      <menuitem label="_t{Users}">
+        <icon>fa:user fa-fw</icon>
+        <action>SystemUserList</action>
+      </menuitem>
+      <menuitem label="_t{Database explorer}">
+        <icon>fa:database fa-fw</icon>
+        <action>SystemDatabaseExplorer</action>
+      </menuitem>
+      <menuitem label="_t{SQL Panel}">
+        <icon>fa:table fa-fw</icon>
+        <action>SystemSQLPanel</action>
+      </menuitem>
+      <menuitem label="PHP Info">
+        <icon>fa:info-circle fa-fw</icon>
+        <action>SystemPHPInfoView</action>
+      </menuitem>
+      <menuitem label="PHP Modules">
+        <icon>fa:info-circle fa-fw</icon>
+        <action>SystemModulesCheckView</action>
+      </menuitem>
+      <menuitem label="_t{Preferences}">
+        <icon>fa:cog fa-fw</icon>
+        <action>SystemPreferenceForm#method=onEdit</action>
+      </menuitem>
+    </menu>
+  </menuitem>
+  <menuitem label="DA">
+    <icon>fa:fas fa-address-book</icon>
+    <menu>
+      <menuitem label="Cadastrar pessoa">
+        <icon>fa:far fa-address-card</icon>
+        <action>PessoaForm</action>
+      </menuitem>
+      <menuitem label="Visualizar pessoa">
+        <icon>fa:fas fa-address-card</icon>
+        <action>PessoaList</action>
+      </menuitem>
+    </menu>
+  </menuitem>
+  <menuitem label="SDTE">
+    <icon>fa:fas fa-calculator</icon>
+    <menu>
+      <menuitem label="">
+        <icon/>
+        <action>CadastroEndereco</action>
+      </menuitem>
+      <menuitem label="">
+        <icon/>
+        <action>CadastroDadosAcidente</action>
+      </menuitem>
+      <menuitem label="">
+        <icon/>
+        <action>CadastroPericia</action>
+      </menuitem>
+      <menuitem label="">
+        <icon/>
+        <action>CadastroDadosCondutor</action>
+      </menuitem>
+      <menuitem label="">
+        <icon/>
+        <action>CadastroSituacaoHabilitacao</action>
+      </menuitem>
+      <menuitem label="">
+        <icon/>
+        <action>CadastroVeiculo</action>
+      </menuitem>
+      <menuitem label="">
+        <icon/>
+        <action>CadastroSinaisCondutor</action>
+      </menuitem>
+      <menuitem label="">
+        <icon/>
+        <action>CadastroEstadoCondutor</action>
+      </menuitem>
+      <menuitem label="">
+        <icon/>
+        <action>CadastroRemovidoPara</action>
+      </menuitem>
+      <menuitem label="">
+        <icon/>
+        <action>CadastroRemovidoPor</action>
+      </menuitem>
+      <menuitem label="">
+        <icon/>
+        <action>CadastroDeclaracaoCondutor</action>
+      </menuitem>
+      <menuitem label="">
+        <action>CadastroProcedimentos</action>
+      </menuitem>
+      <menuitem label="">
+        <icon/>
+        <action>VitimaForm</action>
+      </menuitem>
+      <menuitem label="">
+        <icon/>
+        <action>CadastroObservacao</action>
+      </menuitem>
+      <menuitem label="">
+        <icon/>
+        <action>BoatVisualizar</action>
+      </menuitem>
+      <menuitem label="">
+        <icon/>
+        <action>VitimaForm</action>
+      </menuitem>
+      <menuitem label="Cadastro Boat">
+        <icon>fa:circle-o fa:fw</icon>
+        <action>CadastroBoat</action>
+      </menuitem>
+    </menu>
+  </menuitem>
+  <menuitem label="Cadastros Auxiliares">
+    <icon>fa:sign-out fa-fw</icon>
+    <menu>
+      <menuitem label="">
+        <action>CodicaoDaViaForm</action>
+        <icon/>
+      </menuitem>
+      <menuitem label="">
+        <icon/>
+        <action>ClassificacaoForm</action>
+      </menuitem>
+      <menuitem label="Classificacao ">
+        <icon>fa:list-ol fa:fw</icon>
+        <action>ClassificacaoList</action>
+      </menuitem>
+      <menuitem label="">
+        <icon/>
+        <action>EnvolvidosForm</action>
+      </menuitem>
+      <menuitem label="Envolvidos">
+        <icon>fa:car fa:fw</icon>
+        <action>EnvolvidosList</action>
+      </menuitem>
+      <menuitem label="">
+        <icon/>
+        <action>TipoDeAcidenteForm</action>
+      </menuitem>
+      <menuitem label="Tipo de acidente">
+        <icon>fa:car fa:fw</icon>
+        <action>TipoDeAcidenteList</action>
+      </menuitem>
+      <menuitem label="">
+        <icon/>
+        <action>TipoDePavimentoForm</action>
+      </menuitem>
+      <menuitem label="Tipo de pavimento">
+        <icon>fa:road fa:fw</icon>
+        <action>TipoDePavimentoList</action>
+      </menuitem>
+      <menuitem label="Codição da via">
+        <icon>fa:road fa:fw</icon>
+        <action>CodicaoDaViaList</action>
+      </menuitem>
+      <menuitem label="">
+        <icon/>
+        <action>CodicaoDoTempoForm</action>
+      </menuitem>
+      <menuitem label="Condição do tempo">
+        <icon>fa:umbrella fa:fw</icon>
+        <action>CodicaoDoTempoList</action>
+      </menuitem>
+      <menuitem label="">
+        <icon/>
+        <action>ControleDoTrafegoForm</action>
+      </menuitem>
+      <menuitem label="Controle do Tráfego">
+        <icon>fa:minus-circle fa:fw</icon>
+        <action>ControleDoTrafegoList</action>
+      </menuitem>
+      <menuitem label="">
+        <icon/>
+        <action>SituacaoCondutorForm</action>
+      </menuitem>
+      <menuitem label="Situação condutor">
+        <icon>fa:male fa:fw</icon>
+        <action>SituacaoCondutorList</action>
+      </menuitem>
+      <menuitem label="">
+        <icon/>
+        <action>CategoriaDoVeiculoForm</action>
+      </menuitem>
+      <menuitem label="Categoria do veículo">
+        <icon>fa:automobile fa:fw</icon>
+        <action>CategoriaDoVeiculoList</action>
+      </menuitem>
+      <menuitem label="">
+        <icon/>
+        <action>EstadoDoCondutorForm</action>
+      </menuitem>
+      <menuitem label="Estado do condutor">
+        <icon>fa:heart fa:fw</icon>
+        <action>EstadoDoCondutorList</action>
+      </menuitem>
+      <menuitem label="">
+        <icon/>
+        <action>RemovidoParaForm</action>
+      </menuitem>
+      <menuitem label="Removido para">
+        <icon>fa:institution fa:fw</icon>
+        <action>RemovidoParaList</action>
+      </menuitem>
+      <menuitem label="">
+        <icon/>
+        <action>RemovidoPorForm</action>
+      </menuitem>
+      <menuitem label="Removido por">
+        <icon>fa:ambulance fa:fw</icon>
+        <action>RemovidoPorList</action>
+      </menuitem>
+      <menuitem label="">
+        <icon/>
+        <action>SentidoDaViaForm</action>
+      </menuitem>
+      <menuitem label="Sentido da via">
+        <icon>fa:arrows fa:fw</icon>
+        <action>SentidoDaViaList</action>
+      </menuitem>
+      <menuitem label="">
+        <icon/>
+        <action>MobrasRealizadasForm</action>
+      </menuitem>
+      <menuitem label="Manobras realizadas">
+        <icon>fa:mail-reply-all fa:fw</icon>
+        <action>MobrasRealizadasList</action>
+      </menuitem>
+      <menuitem label="">
+        <icon/>
+        <action>VeiculoRemovidoForm</action>
+      </menuitem>
+      <menuitem label="Veículo removido">
+        <icon>fa:ban fa:fw</icon>
+        <action>VeiculoRemovidoList</action>
+      </menuitem>
+      <menuitem label="">
+        <icon/>
+        <action>EstadoDaVitmaForm</action>
+      </menuitem>
+      <menuitem label="Estado da vítma">
+        <icon>fa:child fa:fw</icon>
+        <action>EstadoDaVitmaList</action>
+      </menuitem>
+      <menuitem label="">
+        <icon/>
+        <action>CodicaoDaVitimaForm</action>
+      </menuitem>
+      <menuitem label="Condição da vítima">
+        <icon>fa:thumbs-up fa:fw</icon>
+        <action>CodicaoDaVitimaList</action>
+      </menuitem>
+      <menuitem label="">
+        <icon/>
+        <action>AparelhodeetilometroForm</action>
+      </menuitem>
+      <menuitem label="Aparelho Etilômetro">
+        <icon>fa:list-ol fa:fw</icon>
+        <action>AparelhodeetilometroList</action>
+      </menuitem>
+      <menuitem label="Página Pública">
+        <icon>fa:file-text fa:fw</icon>
+        <action>PublicView</action>
+      </menuitem>
+    </menu>
+  </menuitem>
+  <menuitem label="_t{Documents}">
+    <icon>fa:file-text-o fa-fw</icon>
+    <menu>
+      <menuitem label="_t{Send document}">
+        <icon>fa:cloud-upload fa-fw</icon>
+        <action>SystemDocumentUploadForm</action>
+      </menuitem>
+      <menuitem label="_t{My documents}">
+        <icon>fa:archive fa-fw</icon>
+        <action>SystemDocumentList</action>
+      </menuitem>
+      <menuitem label="_t{Shared with me}">
+        <icon>fa:share-alt fa-fw</icon>
+        <action>SystemSharedDocumentList</action>
+      </menuitem>
+      <menuitem label="_t{Categories}">
+        <icon>fa:th fa-fw</icon>
+        <action>SystemDocumentCategoryFormList</action>
+      </menuitem>
+    </menu>
+  </menuitem>
+  <menuitem label="Logs">
+    <icon>fa:desktop fa-fw</icon>
+    <menu>
+      <menuitem label="_t{Access Stats}">
+        <icon>fa:bar-chart fa-fw</icon>
+        <action>SystemAccessLogStats</action>
+      </menuitem>
+      <menuitem label="_t{Access Log}">
+        <icon>fa:key fa-fw</icon>
+        <action>SystemAccessLogList</action>
+      </menuitem>
+      <menuitem label="_t{Change Log}">
+        <icon>fa:film fa-fw</icon>
+        <action>SystemChangeLogView</action>
+      </menuitem>
+      <menuitem label="_t{SQL Log}">
+        <icon>fa:database fa-fw</icon>
+        <action>SystemSqlLogList</action>
+      </menuitem>
+      <menuitem label="_t{PHP Log}">
+        <icon>fa:exclamation-triangle fa-fw</icon>
+        <action>SystemPHPErrorLogView</action>
+      </menuitem>
+    </menu>
+  </menuitem>
+  <menuitem label="Common pages">
+    <menu>
+      <menuitem label="Common page 1">
+        <icon/>
+        <action>CommonPage</action>
+      </menuitem>
+      <menuitem label="Common page 2">
+        <icon/>
+        <action>CommonPage</action>
+      </menuitem>
+      <menuitem label="Common page 3">
+        <icon/>
+        <action>CommonPage</action>
+      </menuitem>
+    </menu>
+  </menuitem>
+  <menuitem label="Logout">
+    <icon>fa:sign-out fa-fw</icon>
+    <menu>
+      <menuitem label="Logout">
+        <action>LoginForm#method=onLogout#static=1</action>
+        <icon>fa:sign-out fa-fw</icon>
+      </menuitem>
+    </menu>
+  </menuitem>
+</menu>
