@@ -23,7 +23,7 @@ class CadastroBoat extends TPage
         
         // creates the form
         $this->form = new BootstrapFormBuilder('form_account');
-        $this->form->setFormTitle('Dados do Boletim de Ocorrência de Acidente de Trânsito');
+        $this->form->setFormTitle('Boletim de Ocorrência de Acidente de Trânsito');
         $this->form->setColumnClasses(2, ['col-sm-3', 'col-sm-9']);
         
         
