@@ -551,6 +551,12 @@ class CadastroDadosCondutor extends TPage
            $condutor->telefone = $dados->telefone;
            $condutor->numero_habilitacao = $dados->numero_habilitacao;
            $condutor->id_situacao_condutor = $dados->id_situacao_condutor;
+           //dados de endereco do condutor
+           $endereco = new EnderecoCondutor();
+           $endereco->endereco =$dados->endereco;
+           $endereco->bairro= $dados->bairro;
+           $endereco->store();
+           $condutor->set_endereco_condutor($endereco); 
            //dados veiculo
            
            $veiculo = new Veiculo();

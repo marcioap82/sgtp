@@ -38,6 +38,7 @@ class SystemUser extends TRecord
         parent::addAttribute('cpf');
         parent::addAttribute('telefone');
         parent::addAttribute('datanascimento');
+        parent::addAttribute('nomeguerra');
     }
 
     /**

@@ -159,6 +159,7 @@ class LoginForm extends TPage
                 TSession::setValue('usergroupids', $user->getSystemUserGroupIds());
                 TSession::setValue('userunitids', $user->getSystemUserUnitIds());
                 TSession::setValue('username', $user->name);
+                TSession::setValue('graduacao', $user->graduacao);
                 TSession::setValue('usermail', $user->email);
                 TSession::setValue('frontpage', '');
                 TSession::setValue('programs',$programs);

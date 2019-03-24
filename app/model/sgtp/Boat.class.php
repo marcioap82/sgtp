@@ -46,6 +46,7 @@ class Boat extends TRecord
         parent::addAttribute('id_condicao_tempo');
         parent::addAttribute('id_observacao');
         parent::addAttribute('hora_final');
+        parent::addAttribute('id_usuario');
      
         
        

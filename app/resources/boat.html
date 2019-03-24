@@ -78,7 +78,6 @@ div{
     font-family: verdana;
     font-size: 8px;
     font-weight: bold;
-    color: #8B8989;
 }
 #observacoes{
     text-align: center;
@@ -111,6 +110,15 @@ div{
     border: 1px solid #ccc;
     border-top-width:3px;
     border-right-style: none;
+
+}
+#id4{
+    font-weight: bold;
+    border: 1px solid #ccc;
+    border-top-width:3px;
+    border-bottom-style: none;
+    border-right-style: none;
+    border-left-style:none;
 }
 .resposta{
   font-family: Arial;
@@ -402,6 +410,11 @@ margin-top:40px;
             <div class="col-sm-3"><p>REALIZAVA MANOBRAS: </p><p class="resposta">{$manobras}</p></div>
             <div class="col-sm-6"><p>ALGUM OBJETO ATRAPALHOU SUA TRAFEGABILIDADE NA VIA?</p><p class="resposta">{$objeto}</p></div>         
         </div>
+        <div class="row">          
+            <div class="col-sm-4"><p>CONDUTOR APRESENTADO?</p><p class="resposta">{$condutor_apresentado}</p></div>
+            <div class="col-sm-4"><p>LOCAL DA APRESENTAÇÃO:</p><p class="resposta">{$local_apresentacao}</p></div>
+            <div class="col-sm-4"><p>NÚMERO DO BO:</p><p class="resposta">{$numero_bo}</p></div>
+        </div>
          <div class="row">          
             <div class="col-sm-6"><p>ARTIGO(S) DO CTB:</p><p class="resposta">{$artigo}</p></div>
             <div class="col-sm-6"><p>NÚMERO DO(S) AUTO(S):</p><p class="resposta">{$autos}</p></div>
@@ -452,9 +465,14 @@ margin-top:40px;
     <div class="col-sm-12" id="observacoes"><p>OBSERVAÇÕES</p></div> 
     <div class="col-sm-12" id="rowConteudoObservacoes"><p><p class="resposta">{$observacao}</p></p></div>  
     <div class="row" id="identidicacao">
-        <div class="col-sm-6" id="id1"><p>ENCARREGADO(POSTO/GRADUAÇÃO):</p><p class="resposta">{$encarregado}</p></div>
-        <div class="col-sm-3" id="id2"><p>HORA FINAL:</p><p class="resposta">{$hora_final}</p></div>
-        <div class="col-sm-3" id="id3"><p>PREFIXO DA VIATURA:</p><p class="resposta">{$numero_viatura}</p></div>         
+        <div class="col-sm-6" id="id1"><p>CADASTRADO POR:</p><p class="resposta">{$encarregado}</p></div>
+         <div class="col-sm-6" id="id4"><p>POSTO/GRADUAÇÃO:</p><p class="resposta">{$graduacao}</p></div>
+           
+    </div>
+    <div class="row" id="identidicacao">
+        
+        <div class="col-sm-6" id="id2"><p>HORA FINAL:</p><p class="resposta">{$hora_final}</p></div>
+        <div class="col-sm-6" id="id3"><p>PREFIXO DA VIATURA:</p><p class="resposta">{$numero_viatura}</p></div>         
     </div>
   </div>
   {$botao}    {$botao2}   

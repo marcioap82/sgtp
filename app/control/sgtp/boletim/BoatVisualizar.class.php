@@ -28,6 +28,10 @@ class BoatVisualizar extends TPage
         $vitima = TSession::getValue('form_data_vitima'); 
         $observacao = TSession::getValue('form_data_observacao');
         $condutor = TSession::getValue('form_data_condutor');
+        $logado = TSession::getValue('username');
+        $graduacao = TSession::getValue('graduacao');
+        $id = TSession::getValue('userid');
+       // print_r($graduacao);
         
         $hora  = date('h:i:s');
         
@@ -116,10 +120,12 @@ class BoatVisualizar extends TPage
          'condicaoVia'=>trim($stringCondicaoVia), 'condicaotempo'=>trim($stringCondicaoTempo),'controle'=>trim($stringControleTrafego),
          'dataPericia'=>$Pericia->data,'horarioPericia'=>$Pericia->horario,'nomePericia'=>$Pericia->nome,
          'horaChegada'=>$boat->hora, 'dataBoat'=>$boat->datadecadastro, 'numero_viatura'=>$boat->numero_viatura,
-         'observacao'=>$observacao->observacao,'hora_final'=>$hora, 'compareceu'=>$this->compareceu, 'botao'=>$save, 'botao2'=>$pdf);
+         'observacao'=>$observacao->observacao,'hora_final'=>$hora, 'compareceu'=>$this->compareceu, 'botao'=>$save, 'botao2'=>$pdf,
+         'encarregado'=>$logado, 'graduacao'=>$graduacao);
          
          //pegar os dados do condutor atraveis de um filtro do boat_id
          $criterio = new TCriteria();
+         
          $filtro = new TFilter('id_boat', '=', $boat->id);
          $criterio->add($filtro);
          $condutor = new TRepository('DadosCondutor');
@@ -131,7 +137,8 @@ class BoatVisualizar extends TPage
                  
                //percorre os dados do condutor e adiciona ao layaut
                  foreach($condutores as $cond){
-                  $situacao = new SituacaoCondutor($cond->situacao_condutor);
+                 // $situacao = new SituacaoCondutor($cond->id_situacao_conduto);
+                 
                   $situacaoV = $cond->situacao_condutor = 1 ? "Sim": "Não";
                   $sinais = $cond->dados_do_etilometro->sinais = 1 ? "Sim": "Não";
                   $apresentado = $cond->Procedimentos->condutor_apresentado = 1 ? "Sim": "Não";
@@ -147,8 +154,8 @@ class BoatVisualizar extends TPage
                      }else {
                        $auto = "Não";
                      }
-                      
-                  $Vetorcondutor[] = array('nomecondutor'=>$cond->nome,'situacaocondutor'=>$situacao->descricao,
+                     
+                  $Vetorcondutor[] = array('nomecondutor'=>$cond->nome,'situacaocondutor'=>$cond->situcao_condutor->descricao,
                   'idade'=>$cond->idade, 'genero'=>$cond->genero, 'cpf'=>$cond->cpf, 'bairro'=>$cond->endereco_condutor->bairro,
                   'endereco'=>$cond->endereco_condutor->endereco,'situacaohabilitado'=> $situacaoV, 'numerohabilitacao'=>$cond->numero_habilitacao,
                   'categoria'=>$cond->categoria_habilitacao,'vencimento'=>$cond->vencimento,'uf'=>$cond->uf_habilitacao,
@@ -160,9 +167,9 @@ class BoatVisualizar extends TPage
                   'removido_por'=>$cond->removido_por->nome, 
                   'declaracao_condutor'=>$cond->declaracao_do_condutor->descricao,
                   'manobras'=>$cond->manobras_realizadas->descricao, 'objeto'=>$cond->objetos_na_via->descriacao, 
-                  'apresentado'=>$apresentado, 'autuado'=>$auto,'artigo'=>$cond->Procedimentos->artigo_legislacao,
+                  'condutor_apresentado'=>$apresentado,'local_apresentacao'=>$cond->Procedimentos->lugar, 'numero_bo'=>$cond->Procedimentos->numero_bo, 'autuado'=>$auto,'artigo'=>$cond->Procedimentos->artigo_legislacao,
                   'autos'=>$cond->Procedimentos->numero_autos,'veiculo_removido'=>$cond->veiculo->removido_para->nome,
-                   'veiculo_apresentado'=>$cond->Procedimentos->lugar, 'veiculo_entregue'=>$cond->veiculo->veiculo_entregue->nome,
+                   'veiculo_apresentado'=>$cond->veiculo->veiculo_apresentado->descricao, 'veiculo_entregue'=>$cond->veiculo->veiculo_entregue->nome,
                    'tipo_documeto_responsavel'=>$cond->veiculo->veiculo_entregue->tipo_documento,
                    'documento_responsavel'=>$cond->veiculo->veiculo_entregue->numero,'telefone_responsavel'=>$cond->veiculo->veiculo_entregue->telefone,
                    'aparelhoetilometro'=>$cond->AparelhoEtilomentro->numero_serie);
@@ -219,6 +226,9 @@ class BoatVisualizar extends TPage
          $vitima = TSession::getValue('form_data_vitima'); 
          $observacao = TSession::getValue('form_data_observacao');
          $condutor = TSession::getValue('form_data_condutor');
+         $logado = TSession::getValue('username');
+         $graduacao = TSession::getValue('graduacao');
+         $id = TSession::getValue('userid');
         
             if($boat)
             {
@@ -233,6 +243,7 @@ class BoatVisualizar extends TPage
                $endereco->complemento = $enderecos->complemento;
                   //CADASTRO DE CLASSIFICAÇÃO
                $boat->id_classificacao = $acidente->classificacao_id;
+               $boat->id_usuario = $id;
                //cadastro condicao do tempo
                $boat->id_condicao_tempo = $acidente->codicao_do_tempo_id;
                $endereco->store();

@@ -22,6 +22,7 @@ class DadosCondutor extends TRecord
     private $removido_por;
     private $procedimentos;
     private $aparelho_etilometro;
+    private $situcao_condutor;
 
     /**
      * Constructor method
@@ -53,6 +54,7 @@ class DadosCondutor extends TRecord
         parent::addAttribute('objetos_na_via_id');
         parent::addAttribute('id_procedimentos');
         parent::addAttribute('id_aparelho_etilometro');
+        parent::addAttribute('endereco_condutor_id');
         
          
     }
@@ -82,6 +84,27 @@ class DadosCondutor extends TRecord
     
         // returns the associated object
         return $this->veiculo;
+    }
+    
+     public function set_situcao_condutor(SituacaoCondutor $object)
+    {
+        $this->situcao_condutor = $object;
+        $this->id_situacao_condutor = $object->id;
+    }
+    
+    /**
+     * Method get_veiculo
+     * Sample of usage: $dados_condutor->veiculo->attribute;
+     * @returns Veiculo instance
+     */
+    public function get_situcao_condutor()
+    {
+        // loads the associated object
+        if (empty($this->situcao_condutor))
+            $this->situcao_condutor = new SituacaoCondutor($this->id_situacao_condutor);
+    
+        // returns the associated object
+        return $this->situcao_condutor;
     }
     
     
@@ -249,6 +272,8 @@ class DadosCondutor extends TRecord
         $this->declaracao_do_condutor = $object;
         $this->id_declaracao_condutor= $object->id;
     }
+    
+    
     
     /**
      * Method get_declaracao_do_condutor

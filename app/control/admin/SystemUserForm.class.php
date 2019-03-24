@@ -34,6 +34,7 @@ class SystemUserForm extends TPage
         $repassword          = new TPassword('repassword');
         $email               = new TEntry('email');
         $graducao            = new TEntry('graduacao');
+        $nomeguerra          = new TEntry('nomeguerra');
         $telefone            = new TEntry('telefone');
         $cpf                 = new TEntry('cpf');
         $datanascimento      = new TDate('datanascimento');
@@ -117,9 +118,10 @@ class SystemUserForm extends TPage
         $login->addValidation('Login', new TRequiredValidator);
         $email->addValidation('Email', new TEmailValidator);
         
-        $this->form->addFields( [new TLabel('ID')], [$id],  [new TLabel(_t('Name'))], [$name] );
-        $this->form->addFields( [new TLabel('CPF')], [$cpf], [new TLabel(('Data Nascimento'))], [$datanascimento] );
-         $this->form->addFields( [new TLabel('Telefone')], [$telefone], [new TLabel(('Posto/Graduação'))], [$graducao] );
+        $this->form->addFields( [new TLabel('ID')], [$id],   [new TLabel('CPF')], [$cpf]);
+        $this->form->addFields([new TLabel(_t('Name'))], [$name] );
+         $this->form->addFields( [new TLabel('Telefone')], [$telefone], [new TLabel(('Data Nascimento'))], [$datanascimento] );
+         $this->form->addFields( [new TLabel('Nome Guerra')], [$nomeguerra],[new TLabel(('Posto/Graduação'))], [$graducao]);
         $this->form->addFields( [new TLabel(_t('Login'))], [$login],  [new TLabel(_t('Email'))], [$email] );
         $this->form->addFields( [new TLabel(_t('Main unit'))], [$unit_id],  [new TLabel(_t('Front page'))], [$frontpage_id] );
         $this->form->addFields( [new TLabel(_t('Password'))], [$password],  [new TLabel(_t('Password confirmation'))], [$repassword] );
