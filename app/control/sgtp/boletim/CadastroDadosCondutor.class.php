@@ -43,7 +43,7 @@ class CadastroDadosCondutor extends TPage
         $acao1 = new TDataGridAction(array($this, 'onDelete'));
         $acao1->setLabel('Deletar');
         $acao1->setImage('ico_delete.png');
-        $acao1->setField('nome');
+        $acao1->setField('id');
         
         $acao2 = new TDataGridAction(array($this, 'onEditar'));
         $acao2->setLabel('Editar');
@@ -489,7 +489,7 @@ class CadastroDadosCondutor extends TPage
         $data = TSession::getValue('form_data_condutor');
         $this->form->setData($data);
         $boat = TSession::getValue('form_data_boat');
-        print_r($boat->numero);
+       
         
     }
     
@@ -512,9 +512,9 @@ class CadastroDadosCondutor extends TPage
             if($IdClassificacao!=1)
             {
             // Carregar outra página
-            AdiantiCoreApplication::loadPage('VitimaForm', 'onLoadFromForm1', (array) $data);
+            AdiantiCoreApplication::loadPage('VitimaForm', 'onLoadFromSession', (array) $data);
             }else{
-               AdiantiCoreApplication::loadPage('CadastroObservacao', 'onLoadFromForm1', (array) $data);
+               AdiantiCoreApplication::loadPage('CadastroObservacao', 'onLoadFromSession', (array) $data);
             }
             
         }
@@ -551,19 +551,21 @@ class CadastroDadosCondutor extends TPage
            $condutor->telefone = $dados->telefone;
            $condutor->numero_habilitacao = $dados->numero_habilitacao;
            $condutor->id_situacao_condutor = $dados->id_situacao_condutor;
+           $condutor->id_situacao_do_habilitado = $dados->situacao_do_habilitado;
            //dados de endereco do condutor
-           $endereco = new EnderecoCondutor();
+           $endereco = new EnderecoCondutor($condutor->endereco_condutor->id);
            $endereco->endereco =$dados->endereco;
            $endereco->bairro= $dados->bairro;
            $endereco->store();
            $condutor->set_endereco_condutor($endereco); 
            //dados veiculo
            
-           $veiculo = new Veiculo();
+           $veiculo = new Veiculo($condutor->veiculo->id);
+           $veiculo->veiculo_tipo_procedimento = $dados->veiculo;
            if($dados->veiculo==3)
            {
                //veiculo entregue
-               $VeiculoEntregue = new VeiculoEntregue();
+               $VeiculoEntregue = new VeiculoEntregue($condutor->veiculo->veiculo_entregue->id);
                $VeiculoEntregue->nome = $dados->nome_responsavel;
                $VeiculoEntregue->tipo_documento = $dados->tipo_documento;
                $VeiculoEntregue->numero = $dados->numero_documento;
@@ -587,7 +589,7 @@ class CadastroDadosCondutor extends TPage
            }
            //dados etilometro
            if(!empty($dados->numero_teste)){
-           $etilometro = new DadosDoEtilometro();
+           $etilometro = new DadosDoEtilometro($condutor->dados_do_etilometro->id);
            $etilometro->sinais = $dados->sinais;
            $etilometro->numero = $dados->numero_teste;
            $etilometro->nome = $dados->etilometro;
@@ -603,7 +605,7 @@ class CadastroDadosCondutor extends TPage
            $condutor->id_estado_condutor = $dados->estado;
            $condutor->id_removido_para = $dados->removido_para;
            $condutor->id_removido_por = $dados->removido_por;
-           $declaracao_condutor = new DeclaracaoDoCondutor();
+           $declaracao_condutor = new DeclaracaoDoCondutor($condutor->declaracao_do_condutor->id);
            $declaracao_condutor->descricao = $dados->declaracao_do_condutor;
            $declaracao_condutor->store();
            $condutor->set_declaracao_do_condutor($declaracao_condutor);
@@ -612,13 +614,13 @@ class CadastroDadosCondutor extends TPage
            //sentido da via
            $condutor->sentido_da_via_id = $dados->sentido_da_via;         
            //objetos na via 
-           $objeto = new ObjetosNaVia();
+           $objeto = new ObjetosNaVia($condutor->objetos_na_via->id);
            $objeto->descriacao= $dados->objetos_na_via;
            $objeto->store();
            $condutor->set_objetos_na_via($objeto);
            //dados condutor apresentado
          
-           $procedimentos = new Procedimentos();
+           $procedimentos = new Procedimentos($condutor->Procedimentos->id);
            $procedimentos->artigo_legislacao = $dados->artigo_legislacao;
            $procedimentos->numero_bo = $dados->numero_bo;
            $procedimentos->numero_autos = $dados->numero_autos;
@@ -683,6 +685,71 @@ class CadastroDadosCondutor extends TPage
             
                 
         }
+        public function onEditar($param){
+      TTransaction::open('sgtp');
+    
+      $objeto = new DadosCondutor($param['id']);
+      $valor = new stdClass();
+      $valor->id = $objeto->id;
+      $valor->nome = $objeto->nome;
+      $valor->genero = $objeto->genero;
+      $valor->idade = $objeto->idade;
+      $valor->telefone = $objeto->telefone;
+      $valor->cpf = $objeto->cpf;
+      $valor->endereco = $objeto->endereco_condutor->endereco;
+      $valor->bairro = $objeto->endereco_condutor->bairro;
+      $valor->id_situacao_condutor = $objeto->situcao_condutor->id;
+      $valor->situacao_do_habilitado = $objeto->id_situacao_do_habilitado;
+      $valor->numero_habilitacao = $objeto->numero_habilitacao;
+      $valor->categoria_habilitacao = $objeto->categoria_habilitacao;
+      $valor->vencimento = $objeto->vencimento;
+      $valor->uf_habilitacao = $objeto->uf_habilitacao;
+      $valor->placa = $objeto->veiculo->placa;
+      $valor->chassi = $objeto->veiculo->chassi;
+      $valor->especie = $objeto->veiculo->especie;
+      $valor->categoria_do_veiculo_id = $objeto->veiculo->categoria_do_veiculo->id;
+      $valor->numero_teste = $objeto->dados_do_etilometro->numero;
+      $valor->sinais = $objeto->dados_do_etilometro->sinais;
+      $valor->etilometro = $objeto->dados_do_etilometro->nome;
+      $valor->numero_serie = $objeto->AparelhoEtilomentro->id;
+      $valor->estado = $objeto->id_estado_condutor;
+      $valor->removido_para = $objeto->id_removido_para;
+      $valor->removido_por = $objeto->id_removido_por;
+      $valor->declaracao_do_condutor = $objeto->declaracao_do_condutor->descricao;
+      $valor->sentido_da_via = $objeto->sentidoDaVia->id;
+      $valor->mobras_realizadas = $objeto->manobras_realizadas->id;
+      $valor->objetos_na_via = $objeto->objetos_na_via->descriacao;
+      $valor->condutor_apresentado = $objeto->Procedimentos->condutor_apresentado;
+      $valor->lugar =  $objeto->Procedimentos->lugar;
+      $valor->artigo_legislacao =  $objeto->Procedimentos->artigo_legislacao;
+      $valor->numero_bo = $objeto->Procedimentos->numero_bo;
+      $valor->numero_autos = $objeto->Procedimentos->numero_autos;
+      $valor->veiculo = $objeto->veiculo->veiculo_tipo_procedimento;
+      if($objeto->veiculo->veiculo_tipo_procedimento==1){
+       $valor->removido = $objeto->veiculo->veiculo_removido->id;
+        TQuickForm::showField('form_account', 'removido');
+      }elseif($objeto->veiculo->veiculo_tipo_procedimento==2){
+      $valor->apresentado = $objeto->veiculo->veiculo_apresentado->id;
+       TQuickForm::showField('form_account', 'apresentado');
+      }elseif($objeto->veiculo->veiculo_tipo_procedimento==3){
+        $valor->nome_responsavel = $objeto->veiculo->veiculo_entregue->nome;
+        $valor->tipo_documento = $objeto->veiculo->veiculo_entregue->tipo_documento;
+        $valor->numero_documento = $objeto->veiculo->veiculo_entregue->numero;
+        $valor->numero_telefone = $objeto->veiculo->veiculo_entregue->telefone;
+        
+         TQuickForm::showField('form_account', 'nome_responsavel');
+         TQuickForm::showField('form_account', 'tipo_documento');
+         TQuickForm::showField('form_account', 'numero_documento');
+         TQuickForm::showField('form_account', 'numero_telefone');
+      }
+     
+    
+      self::onChangeType(1);
+      $this->form->setData($valor);
+      TTransaction::close();
+    
+    }
+ 
         
    public static function onChangeType($param)
     {  
@@ -720,7 +787,13 @@ class CadastroDadosCondutor extends TPage
     }
     public function onReload($param = NULL){
        $boat = TSession::getValue('form_data_boat');
+       if(isset($param['order']))
+        {
         $order = $param['order'];
+        }
+        else{
+         $order = NULL;
+        }
         //inicia o banco de dados
         TTransaction::open('sgtp');
         $repositorio = new TRepository('DadosCondutor');
@@ -752,21 +825,36 @@ class CadastroDadosCondutor extends TPage
                parent::show();
         }
         
-    public function onDelete($param){
-    
-    
+   public static function onDelete($param)
+    {
+        // define the delete action
+        $action = new TAction(array(__CLASS__, 'Delete'));
+        $action->setParameters($param); // pass the key parameter ahead
+        
+        // shows a dialog to the user
+        new TQuestion('deseja realmente deletar esse cadastro ?', $action);
+    }
+    public static function Delete($param)
+    {
+        try
+        {
+            $key=$param['key']; // get the parameter $key
+            TTransaction::open('sgtp'); // open a transaction with database
+            $object = new DadosCondutor($key, FALSE); // instantiates the Active Record
+            $object->delete(); // deletes the object from the database
+            TTransaction::close(); // close the transaction
+            
+            $pos_action = new TAction([__CLASS__, 'onReload']);
+            new TMessage('info', AdiantiCoreTranslator::translate('Record deleted'), $pos_action); // success message
+        }
+        catch (Exception $e) // in case of exception
+        {
+            new TMessage('error', $e->getMessage()); // shows the exception error message
+            TTransaction::rollback(); // undo all pending operations
+        }
     }
     
-    public function onEditar($param){
-    TTransaction::open('sgtp');
     
-      $dados = new DadosCondutor($param['id']);
-      //print_r($dados);
-      $this->form->setData($dados);
-      TTransaction::close();
-    
-    }
- 
 
 }
 

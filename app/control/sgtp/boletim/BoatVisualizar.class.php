@@ -54,8 +54,9 @@ class BoatVisualizar extends TPage
          $arrayCondicaoDaVias = array();
          $arraycondicao_do_tempos = array();
          $arrayControleDeTrafego = array();
+         $pdf = TButton::create('Voltar',  array($this, 'onBackForm'), 'Voltar', 'fa:chevron-circle-left orange');
          $save  = TButton::create('save',  array($this, 'onSave'), 'SALVAR', 'fa:save blue');
-         $pdf = TButton::create('PDF',  array($this, 'onPdf'), 'PDF', 'fa:file-pdf-o green');
+        
          
          //percorre os obejtos envolvidos no acidente
          foreach($envolvidos as $envolvido){
@@ -120,7 +121,7 @@ class BoatVisualizar extends TPage
          'condicaoVia'=>trim($stringCondicaoVia), 'condicaotempo'=>trim($stringCondicaoTempo),'controle'=>trim($stringControleTrafego),
          'dataPericia'=>$Pericia->data,'horarioPericia'=>$Pericia->horario,'nomePericia'=>$Pericia->nome,
          'horaChegada'=>$boat->hora, 'dataBoat'=>$boat->datadecadastro, 'numero_viatura'=>$boat->numero_viatura,
-         'observacao'=>$observacao->observacao,'hora_final'=>$hora, 'compareceu'=>$this->compareceu, 'botao'=>$save, 'botao2'=>$pdf,
+         'observacao'=>$observacao->observacao,'hora_final'=>$hora, 'compareceu'=>$this->compareceu,'botao2'=>$pdf,'botao'=>$save,
          'encarregado'=>$logado, 'graduacao'=>$graduacao);
          
          //pegar os dados do condutor atraveis de um filtro do boat_id
@@ -154,7 +155,7 @@ class BoatVisualizar extends TPage
                      }else {
                        $auto = "Não";
                      }
-                     
+                    
                   $Vetorcondutor[] = array('nomecondutor'=>$cond->nome,'situacaocondutor'=>$cond->situcao_condutor->descricao,
                   'idade'=>$cond->idade, 'genero'=>$cond->genero, 'cpf'=>$cond->cpf, 'bairro'=>$cond->endereco_condutor->bairro,
                   'endereco'=>$cond->endereco_condutor->endereco,'situacaohabilitado'=> $situacaoV, 'numerohabilitacao'=>$cond->numero_habilitacao,
@@ -168,7 +169,7 @@ class BoatVisualizar extends TPage
                   'declaracao_condutor'=>$cond->declaracao_do_condutor->descricao,
                   'manobras'=>$cond->manobras_realizadas->descricao, 'objeto'=>$cond->objetos_na_via->descriacao, 
                   'condutor_apresentado'=>$apresentado,'local_apresentacao'=>$cond->Procedimentos->lugar, 'numero_bo'=>$cond->Procedimentos->numero_bo, 'autuado'=>$auto,'artigo'=>$cond->Procedimentos->artigo_legislacao,
-                  'autos'=>$cond->Procedimentos->numero_autos,'veiculo_removido'=>$cond->veiculo->removido_para->nome,
+                  'autos'=>$cond->Procedimentos->numero_autos,'veiculo_removido'=>$cond->veiculo->veiculo_removido->descricao,
                    'veiculo_apresentado'=>$cond->veiculo->veiculo_apresentado->descricao, 'veiculo_entregue'=>$cond->veiculo->veiculo_entregue->nome,
                    'tipo_documeto_responsavel'=>$cond->veiculo->veiculo_entregue->tipo_documento,
                    'documento_responsavel'=>$cond->veiculo->veiculo_entregue->numero,'telefone_responsavel'=>$cond->veiculo->veiculo_entregue->telefone,
@@ -307,46 +308,15 @@ class BoatVisualizar extends TPage
             }
     
     }
-    public function onPdf(){
-      try
-        {
-           $boat = TSession::getValue('form_data_boat');
-          
-            $this->form->validate();
-            
-            $designer = new TPDFDesigner;
-            $designer->fromXml('app/reports/boat.pdf.xml');
-            $designer->replace('{name}', $data->name );
-            $designer->generate();
-            
-            $designer->gotoAnchorXY('anchor1');
-            $designer->SetFontColorRGB('#FF0000');
-            $designer->SetFont('Arial', 'B', 18);
-            $designer->Write(20, '');
-            
-            $file = 'app/output/pdf_boat.pdf';            
-            if (!file_exists($file) OR is_writable($file))
-            {
-                $designer->save($file);
-                // parent::openFile($file);
-                
-                $window = TWindow::create(_t('Designed PDF shapes'), 0.9, 0.9);
-                $object = new TElement('object');
-                $object->data  = $file;
-                $object->type  = 'application/pdf';
-                $object->style = "width: 100%; height:calc(100% - 10px)";
-                $window->add($object);
-                $window->show();
-            }
-            else
-            {
-                throw new Exception(_t('Permission denied') . ': ' . $file);
-            }
-        }
-        catch (Exception $e) // in case of exception
-        {
-            new TMessage('error', $e->getMessage());
-        }
-    
+    public function onLoadFromSession()
+    {
+        
+         TSession::getValue('form_data_visualizar');
+       
+    }
+      public function onBackForm()
+    {
+        // volta para o formulário anterior
+        AdiantiCoreApplication::loadPage('CadastroObservacao','onLoadFromSession',(array) $data);
     }
 }

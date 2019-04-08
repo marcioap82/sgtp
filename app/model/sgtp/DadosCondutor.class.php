@@ -35,7 +35,7 @@ class DadosCondutor extends TRecord
         parent::addAttribute('genero');
         parent::addAttribute('estado');
         parent::addAttribute('idade');
-        parent::addAttribute('habilitacao');
+        parent::addAttribute('id_situacao_do_habilitado');
         parent::addAttribute('numero_habilitacao');
         parent::addAttribute('categoria_habilitacao');
         parent::addAttribute('vencimento');

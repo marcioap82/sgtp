@@ -40,6 +40,8 @@ class SystemUser extends TRecord
         parent::addAttribute('datanascimento');
         parent::addAttribute('nomeguerra');
     }
+    
+  
 
     /**
      * Returns the frontpage name

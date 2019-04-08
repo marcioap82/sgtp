@@ -162,7 +162,7 @@ class CadastroDadosAcidente extends TPage
             
             
             // Carregar outra página
-            AdiantiCoreApplication::loadPage('CadastroPericia', 'onLoadFromForm1', (array) $data);
+            AdiantiCoreApplication::loadPage('CadastroPericia', 'onLoadFromSession', (array) $data);
            
         }
         catch (Exception $e)

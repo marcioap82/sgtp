@@ -89,7 +89,7 @@ class CadastroPericia extends TPage
             
             
             // Carregar outra página
-           AdiantiCoreApplication::loadPage('CadastroDadosCondutor', 'onLoadFromForm1', (array) $data);
+           AdiantiCoreApplication::loadPage('CadastroDadosCondutor', 'onLoadFromSession', (array) $data);
            
         }
         catch (Exception $e)

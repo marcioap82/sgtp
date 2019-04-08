@@ -34,6 +34,7 @@ class Veiculo extends TRecord
         parent::addAttribute('veiculo_entregue_id');
         parent::addAttribute('veiculo_removido_id');
         parent::addAttribute('id_boat');
+        parent::addAttribute('veiculo_tipo_procedimento');
        
       
         

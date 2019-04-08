@@ -59,8 +59,8 @@ class CadastroObservacao extends TPage
     public function onLoadFromSession()
     {
         
-         TSession::getValue('form_data_observacao');
-       
+         $data =  TSession::getValue('form_data_observacao');
+         $this->form->setData($data);
     }
     
    //Função Visualizar 

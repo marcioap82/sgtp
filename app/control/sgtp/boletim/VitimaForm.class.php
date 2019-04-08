@@ -43,20 +43,26 @@ class VitimaForm extends TPage
          $this->datagrid->addColumn($chassi);
         
         //adicionando ações ao datagrid
-        $acao = new TDataGridAction(array($this, 'onDelete'));
-        $acao->setLabel('Deletar');
-        $acao->setImage('ico_delete.png');
-        $acao->setField('nome');
+        $acao1 = new TDataGridAction(array($this, 'onDelete'));
+        $acao1->setLabel('Deletar');
+        $acao1->setImage('ico_delete.png');
+        $acao1->setField('id');
+        $acao2= new TDataGridAction(array($this, 'onEditar'));
+        $acao2->setLabel('Editar');
+        $acao2->setImage('ico_edit.png');
+        $acao2->setField('id');
         
         //adicionando ação ao datagrid
-        $this->datagrid->addAction($acao);
+        $this->datagrid->addAction($acao1);
+        $this->datagrid->addAction($acao2);
         
         $this->datagrid->createModel();
         
         // Dados Vítima
         $boat = TSession::getValue('form_data_boat');
         $boatid =  $boat->id;
-       
+        $id = new TEntry('id');
+        $id->setEditable(FALSE);
         $nome = new TEntry('nome');
         $idade = new TEntry('idade');
         $genero = new TEntry('genero');
@@ -78,7 +84,8 @@ class VitimaForm extends TPage
         
         
         
-         // adiciona os campos ao formulário        
+         // adiciona os campos ao formulário 
+          $this->form->addFields( [ new TLabel('Id') ], [ $id ] );       
         $this->form->addFields( [ new TLabel('Nome') ], [ $nome ] );
         $this->form->addFields( [ new TLabel('Idade') ], [ $idade ] );
         $this->form->addFields( [ new TLabel('Genero') ], [ $genero ] );       
@@ -209,7 +216,7 @@ class VitimaForm extends TPage
             
             
             // Carregar outra página
-           AdiantiCoreApplication::loadPage('CadastroObservacao', 'onLoadFromForm1', (array) $data);
+           AdiantiCoreApplication::loadPage('CadastroObservacao', 'onLoadFromSession', (array) $data);
             
         }
         catch (Exception $e)
@@ -230,7 +237,8 @@ class VitimaForm extends TPage
        TTransaction::open('sgtp');
         $dados = $this->form->getData();
         //cria o objeto vitmima
-        $vitima = new Vitima();
+        
+        $vitima = new Vitima($dados->id);
         $vitima->nome = $dados->nome;
         $vitima->idade = $dados->idade;
         $vitima->genero = $dados->genero;
@@ -258,7 +266,13 @@ class VitimaForm extends TPage
   
      public function onReload($param = NULL){
         $boat = TSession::getValue('form_data_boat');
+        if(isset($param['order']))
+        {
         $order = $param['order'];
+        }
+        else{
+         $order = NULL;
+        }
         //inicia o banco de dados
         TTransaction::open('sgtp');
         $repositorio = new TRepository('Vitima');
@@ -291,9 +305,56 @@ class VitimaForm extends TPage
                parent::show();
         }
         
-    public function onDelete($param){
-    
-    
+        public function onEditar($param){
+         
+          TTransaction::open('sgtp');
+          $vitima = new Vitima($param['id']);
+          $objeto = new stdClass;
+          $objeto->id = $vitima->id;
+          $objeto->nome = $vitima->nome;
+          $objeto->idade = $vitima->idade;
+          $objeto->genero = $vitima->genero;
+          $objeto->telefone = $vitima->telefone;
+          $objeto->id_veiculo = $vitima->veiculo->id;
+          $objeto->removido_para_id = $vitima->removido_para->id;
+          $objeto->removido_por_id = $vitima->removido_por->id;
+          $objeto->estado_da_vitma_id = $vitima->estado_da_vitma->id;
+          $objeto->codicao_da_vitima_id= $vitima->codicao_da_vitima->id;
+         
+         
+          $this->form->setData($objeto);
+          
+          
+          TTransaction::close();
+        }
+        
+    public static function onDelete($param)
+    {
+        // define the delete action
+        $action = new TAction(array(__CLASS__, 'Delete'));
+        $action->setParameters($param); // pass the key parameter ahead
+        
+        // shows a dialog to the user
+        new TQuestion('deseja realmente deletar esse cadastro ?', $action);
+    }
+    public static function Delete($param)
+    {
+        try
+        {
+            $key=$param['key']; // get the parameter $key
+            TTransaction::open('sgtp'); // open a transaction with database
+            $object = new Vitima($key, FALSE); // instantiates the Active Record
+            $object->delete(); // deletes the object from the database
+            TTransaction::close(); // close the transaction
+            
+            $pos_action = new TAction([__CLASS__, 'onReload']);
+            new TMessage('info', AdiantiCoreTranslator::translate('Record deleted'), $pos_action); // success message
+        }
+        catch (Exception $e) // in case of exception
+        {
+            new TMessage('error', $e->getMessage()); // shows the exception error message
+            TTransaction::rollback(); // undo all pending operations
+        }
     }
 
 }
